@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 0;
+}
+
+.top {
+    width: 100%;
+    padding: 15px;
+    background-color: antiquewhite;
+}
+
+.header-bar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-bar p {
+    font-size: 18px;
+}
+
+.container {
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px;
+    gap: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: aquamarine;
+}
+
+.build-tarefa {
+    width: 76%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    gap: 14px;
+    border-radius: 15px;
+    background-color: #fff;
+}
+
+.build-tarefa input {
+    width: 45%;
+    border-radius: 10px;
+    border: none;
+    box-shadow: none;
+    padding: 4px;
+}
+
+.add {
+    width: 16%;
+    border-radius: 10px;
+    padding: 4px;
+    border: 1px solid #000;
+    cursor: pointer;
+    color: #fff;
+    background-color: #307a32;
+}
+
+.add:hover {
+    color: #000;
+    background-color: rgb(0, 194, 0);
+}
+
+.info {
+    width: 100%;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tarefa {
+    width: 30%;
+    height: 8rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+    border-radius: 10px;
+    padding: 10px;
+    color: #000;
+    background-color: #ddd;
+}
+
+.bnts {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 6px;
+}
+
+.bnt {
+    width: 40%;
+    border-radius: 10px;
+    padding: 6px;
+    cursor: pointer;
+}
+
+.concluir {
+    border: 1px solid #000;
+    color: #fff;
+    background-color: green;
+}
+
+.concluir:hover {
+    color: #000;
+    background-color: rgb(0, 194, 0);
+}
+
+.excluir {
+    border: 1px solid #000;
+    color: #000;
+    background-color: red;
+}
+
+.excluir:hover {
+    color: #fff;
+    background-color: #c01e1e;
+}
