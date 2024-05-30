@@ -1,33 +1,46 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="./style.css">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-     <title> Gerenciador de Despesas </title>
-    </head>
-    <body>
-      <header class="header">
-        <p>Seja bem vindo</p>
-      </header>
-      
-      <main class="container">
-        <div class="createDespeza">
-          <form class="despeza">
-            <input type="text" placeholder="Nome da despeza" id="nome" class="input">
-            <input type="number" placeholder="Valor da Despeza" id="valor" class="input">
-            <input type="text" placeholder="Tag da Despeza" class="input" id="tag">
-            <div class="colorSelector">
-              <input type="color" class="color" id="color">
-              <p class="explicacao">Selecione a cor da sua despeza:</p>
-            </div>
-            <button type="button" onclick="criar()" class="bnt"> Criar </button>
-          </form>
-        </div>
-        <div class="despezas"></div>
-      </main>
 
-      <script src="./script.js"></script>
-    </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <title> Gerenciador de Despesas </title>
+</head>
+
+<body>
+  <header class="header">
+    <p>Seja bem vindo</p>
+  </header>
+
+  <main class="container">
+    <div class="createDespeza">
+      <form class="despeza">
+        <input type="text" placeholder="Nome da despeza" id="nome" class="input" autocomplete="off">
+        <input type="number" placeholder="Valor da Despeza" id="valor" class="input">
+        <input type="text" placeholder="Tag da Despeza" class="input" id="tag">
+        <div class="colorSelector">
+          <input type="color" class="color" id="color">
+          <p class="explicacao">Selecione a cor da sua despeza:</p>
+        </div>
+        <button type="button" class="btn"> Criar </button>
+      </form>
+    </div>
+    <div class="searchBar">
+      <div class="searchHolder" id="searchHolder">
+        <input type="text" name="search" id="search" class="search" placeholder="Pesquise a despeza" autocomplete="off">
+        <button id="searchIcon" class="searchBnt">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+    </div>
+    <div class="despezas"></div>
+  </main>
+
+  <script type="module" src="./despesas.js"></script>
+  <script type="module" src="./calcDespezas.js"></script>
+  <script type="module" src="./search.js"></script>
+</body>
+
 </html>
