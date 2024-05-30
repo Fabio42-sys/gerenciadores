@@ -1,4 +1,4 @@
-import { gerarId, removerDespesa } from "./calcDespesas.js";
+import { gerarId, removerDespesa } from "./calcDespezas.js";
 
 let tagsList = []; // Lista para armazenar todas as tags criadas
 
@@ -14,6 +14,7 @@ export function criar() {
   // Validar se os campos estão preenchidos corretamente
   if (!nomeDespesa || isNaN(valorDespesa) || !tagName || !color) {
     alert('Por favor, preencha todos os campos.');
+    console.log('Erro: campos incompletos.', { nomeDespesa, valorDespesaString, tagName, color });
     return;
   }
 
@@ -46,6 +47,7 @@ export function criar() {
 
   // Exibir o total atualizado no console
   console.log('Novo total despesa:', totalDespesa);
+  console.log('id despesa', novaDespesa.id);
 
   // Criar os elementos HTML
   var despezaHolder = document.createElement('div');
