@@ -47,7 +47,6 @@ export function criar() {
 
   // Exibir o total atualizado no console
   console.log('Novo total despesa:', totalDespesa);
-  console.log('id despesa', novaDespesa.id);
 
   // Criar os elementos HTML
   var despezaHolder = document.createElement('div');
