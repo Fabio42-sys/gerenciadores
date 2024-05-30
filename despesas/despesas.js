@@ -1,4 +1,4 @@
-import { gerarId, removerDespesa } from "./calcDespesas.js";
+import { gerarId, removerDespesa } from "./calcDespezas.js";
 
 let tagsList = []; // Lista para armazenar todas as tags criadas
 
