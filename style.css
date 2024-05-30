@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100vh;
+}
+
+body {
+    height: 100vh;
+    padding: 10px;
+}
+
+.optimizer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.explain {
+    padding: 20px;
+    background-color: aqua;
+}
+
+.explain p {
+    font-size: 18px;
+}
+
+.options {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    padding: 20px;
+}
+
+.options a {
+    text-decoration: none;
+    font-size: 17px;
+}
