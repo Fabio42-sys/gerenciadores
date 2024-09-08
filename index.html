@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,21 +8,56 @@
     <link rel="stylesheet" href="style.css">
     <title>Otimizador de objetivos</title>
 </head>
-<body>
-    
-    <main class="optimizer">
-        <div class="explain">
-            <p> Olá pessoal, sou eu denovo! Dessa vez eu trago pra vocês um organizador, aqui vocês vão poder organizar suas tarefas e também suas despezas! Boa organização </p>
-        </div>
-        <div class="options">
-            <a href="./despesas/index.html"> Organize suas despezas </a>
-            <a href="./tarefas/index.html"> Organize suas tarefas </a>
-        </div>
-        <div class="showOperations">
 
+<body>
+
+    <header class="explain">
+        <h2>Sejam bem vindos</h2>
+
+        <p>
+            Olá pessoal, aqui você encontrara formas de orgoniazr tanto suas tarefas quanto suas despezas.
+        </p>
+    </header>
+
+    <main class="optimizer">
+        <div class="options">
+            <div class="despesas">
+                <a href="./despesas/index.html">
+                    Organize suas despezas
+                </a>
+                <form class="despeza" id="despesaForm">
+                    <label for="nomeD">Nome da sua despesa</label>
+                    <input type="text" placeholder="Nome da despeza" id="nome" class="input" autocomplete="off" name="nomeD">
+                    <label for="valorD">Valor da sua despesa</label>
+                    <input type="number" placeholder="Valor da Despeza" id="valor" class="input" name="valorD">
+                    <label for="tagD">Tag da sua despesa</label>
+                    <input type="text" placeholder="Tag da Despeza" class="input" id="tag"
+                    name="tagD">
+                    <div class="colorSelector">
+                        <input type="color" class="color" id="color">
+                        <p class="explicacao">Selecione a cor da sua despeza:</p>
+                    </div>
+                    <button type="button" class="btn" id="despesa"> Criar </button>
+                </form>
+            </div>
+            <div class="tarefas">
+                <a href="./tarefas/index.html">
+                    Organize suas tarefas
+                </a>
+                <form class="taskBuild" id="tarefaForm">
+                    <label for="taskName">Escolha um nome</label>
+                    <input type="text" name="taskName" id="taskName">
+                    <label for="limitDate">Escolha uma data limite para a tarefa</label>
+                    <input type="date" id="taskLimit" placeholder="DD/MM/YYYY">
+                    <label for="tag">Escolha uma tag</label>
+                    <input type="text" name="tag" id="taskTag">
+                    <button type="button" class="btn" id="submitBtn">Criar</button>
+                </form>
+            </div>
         </div>
     </main>
 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
+
 </html>

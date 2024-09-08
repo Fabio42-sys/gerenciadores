@@ -4,81 +4,111 @@ let tagsList = []; // Lista para armazenar todas as tags criadas
 
 // Função para criar uma nova despesa
 export function criar() {
-  // Obter os valores dos campos de entrada
-  let nomeDespesa = document.getElementById('nome').value;
-  let valorDespesaString = document.getElementById('valor').value; // Pegando o valor como string
-  let valorDespesa = parseFloat(valorDespesaString); // Convertendo para float
-  let tagName = document.getElementById('tag').value.toLowerCase();
-  let color = document.getElementById('color').value;
+    // Obter os valores dos campos de entrada
+    let nomeDespesa = document.getElementById('nome').value;
+    let valorDespesaString = document.getElementById('valor').value; // Pegando o valor como string
+    let valorDespesa = parseFloat(valorDespesaString); // Convertendo para float
+    let tagName = document.getElementById('tag').value.toLowerCase();
+    let color = document.getElementById('color').value;
 
-  // Validar se os campos estão preenchidos corretamente
-  if (!nomeDespesa || isNaN(valorDespesa) || !tagName || !color) {
-    alert('Por favor, preencha todos os campos.');
-    console.log('Erro: campos incompletos.', { nomeDespesa, valorDespesaString, tagName, color });
-    return;
-  }
+    // Validar se os campos estão preenchidos corretamente
+    if (!nomeDespesa || isNaN(valorDespesa) || !tagName || !color) {
+        alert('Por favor, preencha todos os campos.');
+        console.log('Erro: campos incompletos.', { nomeDespesa, valorDespesaString, tagName, color });
+        return;
+    }
 
-  // Criar um identificador único para a despesa
-  let despesaId = gerarId();
+    // Recuperar despesas do localStorage
+    let despesas = JSON.parse(localStorage.getItem('despesas')) || [];
 
-  // Adicionar a tag à lista de tags com o identificador
-  tagsList.push({ id: despesaId, tag: tagName });
+    // Verificar se já existe uma despesa com o mesmo nome e valor
+    const despesaExistente = despesas.find(despesa => 
+        despesa.descricao === nomeDespesa && despesa.valor === valorDespesa
+    );
 
-  // Recuperar despesas do localStorage
-  let despesas = JSON.parse(localStorage.getItem('despesas')) || [];
+    if (!despesaExistente) {
+        // Criar um identificador único para a nova despesa
+        let despesaId = gerarId();
 
-  // Criar nova despesa com ID único
-  let novaDespesa = {
-    id: despesaId,
-    descricao: nomeDespesa,
-    valor: valorDespesa
-  };
+        // Adicionar o valor ao total de despesas
+        let totalDespesa = parseFloat(localStorage.getItem('totalDespesa')) || 0;
+        totalDespesa += valorDespesa;
+        localStorage.setItem('totalDespesa', totalDespesa.toString());
 
-  // Adicionar a nova despesa ao array
-  despesas.push(novaDespesa);
+        // Criar nova despesa com ID único
+        let novaDespesa = {
+            id: despesaId,
+            descricao: nomeDespesa,
+            valor: valorDespesa,
+            tag: tagName,
+            color: color
+        };
 
-  // Armazenar o array de despesas atualizado no localStorage
-  localStorage.setItem('despesas', JSON.stringify(despesas));
+        // Adicionar a nova despesa ao array
+        despesas.push(novaDespesa);
 
-  // Atualizar o total de despesas
-  let totalDespesa = parseFloat(localStorage.getItem('totalDespesa')) || 0;
-  totalDespesa += valorDespesa;
-  localStorage.setItem('totalDespesa', totalDespesa.toString());
+        // Armazenar o array de despesas atualizado no localStorage
+        localStorage.setItem('despesas', JSON.stringify(despesas));
 
-  // Exibir o total atualizado no console
-  console.log('Novo total despesa:', totalDespesa);
-
-  // Criar os elementos HTML
-  var despezaHolder = document.createElement('div');
-  var visibleDespesas = document.querySelector('.despezas');
-  let nomeElement = document.createElement('p');
-  let valorElement = document.createElement('p');
-  let tagElement = document.createElement('p');
-  var checkButton = document.createElement('button');
-
-  // Configurar os elementos
-  despezaHolder.classList.add('newDespeza');
-  despezaHolder.dataset.id = despesaId; // Definir o id como atributo do elemento
-  despezaHolder.dataset.tag = tagName; // Definir a tag como atributo do elemento
-  nomeElement.textContent = nomeDespesa;
-  valorElement.textContent = valorDespesa.toFixed(2); // Arredondar para duas casas decimais
-  tagElement.textContent = tagName;
-  checkButton.textContent = 'Fechar';
-  despezaHolder.style.backgroundColor = color;
-
-  // Adicionar os elementos ao 'despezaHolder'
-  despezaHolder.appendChild(nomeElement);
-  despezaHolder.appendChild(valorElement);
-  despezaHolder.appendChild(tagElement);
-  despezaHolder.appendChild(checkButton);
-
-  // Adicionar 'despezaHolder' ao elemento pai
-  visibleDespesas.appendChild(despezaHolder);
-
-  checkButton.addEventListener('click', () => {
-    removerDespesa(despesaId, valorDespesa);
-    despezaHolder.remove();
-  });
+        // Retorna a nova despesa para ser usada na página principal
+        return novaDespesa;
+    } else {
+        // Se a despesa já existir, remover a duplicata e exibir uma mensagem
+        removerDespesa(despesaExistente.id, valorDespesa);
+        alert('Uma despesa com o mesmo nome e valor já existe! Despesa duplicada foi removida.');
+    }
 }
 
-export { tagsList };
+// Função para adicionar uma despesa ao DOM
+function adicionarDespesaAoDOM(despesa) {
+    const despezaHolder = document.createElement('div');
+    const visibleDespesas = document.querySelector('.despezas');
+    let name = document.createElement('p');
+    let value = document.createElement('p');
+    let tag = document.createElement('p');
+    let checkButton = document.createElement('button');
+
+    // Configurar os elementos
+    despezaHolder.classList.add('newDespeza');
+    despezaHolder.dataset.id = despesa.id; // Definir o id como atributo do elemento
+    despezaHolder.dataset.tag = despesa.tag; // Definir a tag como atributo do elemento
+
+    // Definir o conteúdo dos elementos
+    name.textContent = despesa.descricao;
+    value.textContent = despesa.valor.toFixed(2); // Arredondar para duas casas decimais
+    tag.textContent = despesa.tag;
+    checkButton.textContent = 'Fechar';
+    despezaHolder.style.backgroundColor = despesa.color;
+
+    // Adicionar os elementos ao 'despezaHolder'
+    despezaHolder.appendChild(name);
+    despezaHolder.appendChild(value);
+    despezaHolder.appendChild(tag);
+    despezaHolder.appendChild(checkButton);
+
+    // Adicionar 'despezaHolder' ao elemento pai
+    visibleDespesas.appendChild(despezaHolder);
+
+    // Adicionar evento ao botão de fechar
+    checkButton.addEventListener('click', () => {
+        removerDespesa(despesa.id, despesa.valor);
+        despezaHolder.remove();
+        let despesas = JSON.parse(localStorage.getItem('despesas')) || [];
+        despesas = despesas.filter((d) => d.id !== despesa.id);
+        localStorage.setItem('despesas', JSON.stringify(despesas));
+        tagsList = tagsList.filter((tag) => tag.id !== despesa.id);
+    });
+}
+
+// Função para carregar e exibir despesas ao carregar a página
+function carregarDespesas() {
+    let despesas = JSON.parse(localStorage.getItem('despesas')) || [];
+    despesas.forEach(despesa => {
+        adicionarDespesaAoDOM(despesa);
+    });
+}
+
+// Carregar despesas ao carregar a página
+window.addEventListener('DOMContentLoaded', carregarDespesas);
+
+export { tagsList }

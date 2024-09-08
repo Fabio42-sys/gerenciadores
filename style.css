@@ -11,6 +11,17 @@ html {
 body {
     height: 100vh;
     padding: 10px;
+    background-color: darkblue ;
+}
+
+.explain {
+    text-align: center;
+    padding: 20px;
+    background-color: #6495ED;
+}
+
+.explain p {
+    font-size: 18px;
 }
 
 .optimizer {
@@ -20,15 +31,6 @@ body {
     align-items: center;
     justify-content: center;
     gap: 20px;
-}
-
-.explain {
-    padding: 20px;
-    background-color: aqua;
-}
-
-.explain p {
-    font-size: 18px;
 }
 
 .options {
@@ -41,5 +43,111 @@ body {
 
 .options a {
     text-decoration: none;
+    color: aliceblue;
     font-size: 17px;
+}
+
+.despesas {
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    padding: 10px;
+    flex-direction: column;
+    row-gap: 20px;
+    border: 1px solid #000;
+}
+
+.tarefas {
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    padding: 10px;
+    flex-direction: column;
+    row-gap: 20px;
+    border: 1px solid #000;
+}
+
+.despeza {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.input {
+    width: 100%;
+    border: 1px solid #000;
+    box-shadow: none;
+    border-radius: 6px;
+    padding: 4px;
+}
+
+.colorSelector {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    gap: 80px;
+}
+
+.explicacao {
+    font-size: 18px;
+}
+
+.color {
+    width: 10%;
+    border: 1px solid #000;
+    box-shadow: none;
+    border-radius: 6px;
+    padding: 4px;
+}
+
+.btn {
+    width: 30%;
+    border-radius: 6px;
+    padding: 4px;
+    border: 1px solid #000;
+    box-shadow: none;
+    cursor: pointer;
+    background-color: #ccc;
+}
+
+.taskBuild {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.taskBuild input {
+    width: 100%;
+    border: 1px solid #000;
+    box-shadow: none;
+    border-radius: 6px;
+    padding: 4px;
+}
+
+.btn {
+    width: 20%;
+    padding: 4px;
+    background-color: #ddd;
+    color: #000;
+    border-radius: 10px;
+    border: 1px solid #000;
+}
+
+.btn:hover {
+    cursor: pointer;
+    background-color: #fff;
+    color: #000;
 }

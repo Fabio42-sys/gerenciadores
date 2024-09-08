@@ -5,7 +5,9 @@
 }
 
 body {
+    background-color: #171717;
     padding: 8px;
+    animation: fadeInAnimation ease-in 2s;
 }
 
 .header {

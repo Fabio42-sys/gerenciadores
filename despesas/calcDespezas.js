@@ -1,4 +1,4 @@
-import { criar } from "./despesas.js";
+import { criar, tagsList } from "./despesas.js";
 
 // Função para gerar ID aleatório
 export function gerarId() {
@@ -12,9 +12,8 @@ document.addEventListener('DOMContentLoaded', function () {
     criar();
   });
 });
-
 export function removerDespesa(despesaId) {
-  // Recuperar as despesas do localStorage
+  // Recuperar as despesas do Local Storage
   let despesas = JSON.parse(localStorage.getItem('despesas')) || [];
 
   // Encontrar o índice da despesa a ser removida
@@ -30,17 +29,20 @@ export function removerDespesa(despesaId) {
     // Subtrair o valor da despesa do total das despesas
     totalDespesa -= valorDespesa;
 
-    // Atualizar o total das despesas no localStorage
+    // Atualizar o total das despesas no Local Storage
     localStorage.setItem('totalDespesa', totalDespesa.toString());
 
-    // Remover a despesa do array
+    // Remover a despesa do array de despesas
     despesas.splice(despesaIndex, 1);
 
-    // Armazenar o array de despesas atualizado no localStorage
+    // Armazenar o array de despesas atualizado no Local Storage
     localStorage.setItem('despesas', JSON.stringify(despesas));
 
     // Exibir o total atualizado no console
     console.log('Despesa removida. Novo total despesa:', totalDespesa);
+
+    // Remover a despesa da lista de tags
+    tagsList = tagsList.filter(tag => tag.id !== despesaId);
   } else {
     // Exibir uma mensagem de erro se a despesa não for encontrada
     console.error('Despesa não encontrada ou ID não corresponde');
